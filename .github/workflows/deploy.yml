@@ -22,4 +22,4 @@ jobs:
     # Note: Replace the destination path below with your actual local Tomcat path!
     - name: Deploy to Local Tomcat Webapps
       run: |
-        copy "target\simple-servlet.war" "C:\Users\hp\Downloads\apache-tomcat-10.1.57.zip\apache-tomcat-10.1.57\webapps\"
+        copy "target\simple-servlet.war" "C:\Users\hp\Downloads\apache-tomcat-10.1.57\apache-tomcat-10.1.57\webapps"
