@@ -6,42 +6,39 @@
     <groupId>org.springframework</groupId>
     <artifactId>simple-servlet</artifactId>
     <packaging>war</packaging>
-
     <version>0.1</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!-- Jetty version from
-           https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/
-        -->
-        <jettyVersion>9.4.12.v20180830</jettyVersion>
+        <!-- Tomcat 10 requires at least Java 11 to run efficiently -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!-- Updated Jetty plugin version to support Jakarta EE namespace mappings -->
+        <jettyVersion>11.0.24</jettyVersion>
     </properties>
 
- <dependencies>
-    <dependency>
-     <groupId>javax</groupId>
-     <artifactId>javaee-api</artifactId>
-     <version>8.0</version>
-     <scope>provided</scope>
-   </dependency>
+    <dependencies>
+        <!-- Replaced legacy Java EE 8 API with Jakarta EE 10 Web API for Tomcat 10 support -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
 
-   <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>${jettyVersion}</version>
-    </dependency>
-
- </dependencies>
-
-<build>
-    <plugins>
-        <plugin>
+        <dependency>
             <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-maven-plugin</artifactId>
+            <artifactId>jetty-server</artifactId>
             <version>${jettyVersion}</version>
-        </plugin>
-    </plugins>
-</build>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jettyVersion}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
