@@ -13,13 +13,16 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Build Web Application Archive (WAR)
-      run: mvn clean package -f simple-servlet/pom.xml
+      working-directory: simple-servlet
+      run: mvn clean package
 
     - name: List target directory
-      run: dir simple-servlet\target
+      working-directory: simple-servlet
+      run: dir target
 
     - name: Deploy to Local Tomcat Webapps
       shell: pwsh
+      working-directory: simple-servlet
       run: |
-        $war = Get-ChildItem -Path "simple-servlet\target" -Filter *.war | Select-Object -First 1
+        $war = Get-ChildItem -Path "target" -Filter *.war | Select-Object -First 1
         Copy-Item $war.FullName -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
