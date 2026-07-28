@@ -16,7 +16,9 @@ jobs:
 
     # Step 2: Use Maven to compile your code and build the .war file
     - name: Build Web Application Archive (WAR)
-      run: mvn clean package
+      run: |
+        cd simple-servlet
+        mvn clean package
 
     # Step 3: Copy the generated WAR file into Tomcat's deployment folder
     # Note: Replace the destination path below with your actual local Tomcat path!
