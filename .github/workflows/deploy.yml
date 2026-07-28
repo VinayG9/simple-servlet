@@ -23,5 +23,5 @@ jobs:
     - name: Deploy to Local Tomcat Webapps
       shell: pwsh
       run: |
-        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" `
+        Copy-Item "\target\simple-servlet-0.1.war"
           -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
