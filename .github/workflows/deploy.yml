@@ -2,29 +2,24 @@ name: Compile and Deploy to Local Tomcat
 
 on:
   push:
-    branches: [ "master" ] # Triggers whenever you push code to your master branch
+    branches: [ "master" ]
 
 jobs:
   build-and-deploy:
-    # Forces the job to run directly on the local machine runner you connected
-    runs-on: self-hosted 
+    runs-on: self-hosted
 
     steps:
-    # Step 1: Download your source code files from GitHub into the runner workspaces
     - name: Checkout Repository Code
       uses: actions/checkout@v4
 
-    # Step 2: Use Maven to compile your code and build the .war file
     - name: Build Web Application Archive (WAR)
       run: |
         cd simple-servlet
         mvn clean package
 
     - name: List target directory
-      run: dir simple-servlet\target    
+      run: dir simple-servlet\target
 
-    # Step 3: Copy the generated WAR file into Tomcat's deployment folder
-    # Note: Replace the destination path below with your actual local Tomcat path!
     - name: Deploy to Local Tomcat Webapps
       run: |
-        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps"
+        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
