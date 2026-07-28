@@ -7,20 +7,22 @@ on:
 jobs:
   build-and-deploy:
     runs-on: [self-hosted, Windows, X64]
+    defaults:
+      run:
+        working-directory: simple-servlet   # 👈 all steps run here
 
     steps:
     - name: Checkout Repository Code
       uses: actions/checkout@v4
 
-    # Build directly from repo root, no extra nesting
     - name: Build Web Application Archive (WAR)
-      run: mvn -f simple-servlet/pom.xml clean package
+      run: mvn clean package
 
     - name: List target directory
-      run: dir simple-servlet\target
+      run: dir target
 
     - name: Deploy to Local Tomcat Webapps
       shell: pwsh
       run: |
-        $war = Get-ChildItem -Path "simple-servlet\target" -Filter *.war | Select-Object -First 1
+        $war = Get-ChildItem -Path "target" -Filter *.war | Select-Object -First 1
         Copy-Item $war.FullName -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
