@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted
+    runs-on: [self-hosted, Windows, X64]
 
     steps:
     - name: Checkout Repository Code
@@ -21,5 +21,7 @@ jobs:
       run: dir simple-servlet\target
 
     - name: Deploy to Local Tomcat Webapps
+      shell: pwsh
       run: |
-        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
+        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" `
+          -Destination "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps" -Force
