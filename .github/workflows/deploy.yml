@@ -10,7 +10,7 @@ jobs:
     runs-on: self-hosted 
 
     steps:
-    # Step 1: Download your source code files from GitHub into the runner workspace
+    # Step 1: Download your source code files from GitHub into the runner workspaces
     - name: Checkout Repository Code
       uses: actions/checkout@v4
 
