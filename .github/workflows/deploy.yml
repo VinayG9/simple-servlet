@@ -20,8 +20,11 @@ jobs:
         cd simple-servlet
         mvn clean package
 
+    - name: List target directory
+      run: dir simple-servlet\target    
+
     # Step 3: Copy the generated WAR file into Tomcat's deployment folder
     # Note: Replace the destination path below with your actual local Tomcat path!
     - name: Deploy to Local Tomcat Webapps
       run: |
-        copy "target\simple-servlet-0.1.war" "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps"
+        Copy-Item "simple-servlet\target\simple-servlet-0.1.war" "C:\Users\hp\Downloads\apache-tomcat-10.1.57\webapps"
