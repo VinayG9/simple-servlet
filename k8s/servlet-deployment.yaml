@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: servlet-container
-        image: local/simple-servlet:tomcat-v1  # <-- Updated unique tag
+        image: local/final-tomcat:v1  # <-- Updated unique tag
         imagePullPolicy: Never                  # <-- Forces local cluster lookup
         ports:
         - containerPort: 8080
