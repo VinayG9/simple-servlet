@@ -21,11 +21,10 @@ jobs:
     - name: Build Web Application Archive (WAR)
       run: mvn -f pom.xml clean package
 
-    - name: Point Docker to Minikube & Build Image
+    - name: Build Image Directly Inside Minikube Cache
       shell: powershell
       run: |
-        & minikube -p minikube docker-env --shell powershell | Invoke-Expression
-        docker build -t local/simple-servlet:latest .
+        minikube image build -t local/simple-servlet:tomcat-v1 .
 
     - name: Deploy to Minikube
       shell: powershell
