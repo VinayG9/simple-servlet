@@ -14,10 +14,8 @@ spec:
     spec:
       containers:
       - name: servlet-container
-        # For Option 1 use: local/simple-servlet:latest
-        # For Option 2 use: YOUR_DOCKERHUB_USERNAME/simple-servlet:0.1
-        image: local/simple-servlet:latest 
-        imagePullPolicy: IfNotPresent
+        image: local/simple-servlet:tomcat-v1  # <-- Updated unique tag
+        imagePullPolicy: Never                  # <-- Forces local cluster lookup
         ports:
         - containerPort: 8080
 ---
