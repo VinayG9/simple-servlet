@@ -24,7 +24,7 @@ kind: Service
 metadata:
   name: servlet-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: simple-servlet
   ports:
