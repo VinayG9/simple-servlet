@@ -24,8 +24,8 @@ jobs:
     - name: Build Image Directly Inside Minikube Cache
       shell: powershell
       run: |
-        minikube image build -t local/simple-servlet:tomcat-v1 .
-
+        minikube image build -t local/final-tomcat:v1 .
+        
     - name: Deploy to Minikube
       shell: powershell
       run: |
