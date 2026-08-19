@@ -30,4 +30,5 @@ jobs:
       shell: powershell
       run: |
         kubectl apply -f k8s/servlet-deployment.yaml
+        kubectl apply -f k8s/servlet-ingress.yaml
         kubectl rollout restart deployment/servlet-deployment
